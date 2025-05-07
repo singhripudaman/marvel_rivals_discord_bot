@@ -2,6 +2,8 @@ services:
   app:
     build:
       context: .
+    environment:
+      - DISCORD_TOKEN=${DISCORD_TOKEN}
     ports:
       - "8001:8000"
     volumes:
