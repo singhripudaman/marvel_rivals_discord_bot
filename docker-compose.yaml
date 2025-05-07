@@ -1,0 +1,8 @@
+services:
+  app:
+    build:
+      context: .
+    ports:
+      - "8001:8000"
+    volumes:
+      - .:/app
