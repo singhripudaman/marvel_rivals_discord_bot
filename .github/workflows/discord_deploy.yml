@@ -20,5 +20,7 @@ jobs:
         run: |
           ssh ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOSTNAME }} << "EOF"
           cd ./discord_bot
+          export DISCORD_TOKEN=${{ secrets.DISCORD_TOKEN }}
           docker compose up --build -d
+          docker system prune
           EOF
