@@ -1,0 +1,24 @@
+name: Bot Deployment
+on:
+  push:
+    branches: ["main"]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.EC2_PRIVATE_KEY}}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.EC2_HOSTNAME }} >> ~/.ssh/known_hosts
+      - name: Copy to EC2
+        run: |
+          rsync -avz ./ ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOSTNAME }}:/home/${{ secrets.EC2_USER }}/discord_bot
+      - name: Start bot
+        run: |
+          ssh ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOSTNAME }} << "EOF"
+          cd ./discord_bot
+          docker compose up --build -d
+          EOF
