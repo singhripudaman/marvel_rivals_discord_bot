@@ -1,7 +1,5 @@
 FROM python:3.12-slim
 
-# install build essentials
-RUN apt-get update && apt-get install -y build-essential
 WORKDIR /app
 
 COPY requirements.txt .
