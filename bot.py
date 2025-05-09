@@ -4,7 +4,8 @@ from dotenv import load_dotenv
 import os
 from openai import OpenAI
 import requests
-API_URL_BASE = "http://marvel_api.hamood.dev"
+
+API_URL_BASE = "http://marvels_api.hamood.dev"
 
 load_dotenv()
 
@@ -13,8 +14,6 @@ intents.message_content = True
 
 bot = commands.Bot(command_prefix="!", intents=intents)
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-
-
 
 
 @bot.event
@@ -36,8 +35,10 @@ async def roast(ctx, *, content):
     username = content
     await ctx.reply("Let me cook...")
     await ctx.message.channel.typing()
-    
-    response = requests.get(f"{API_URL_BASE}/api/get_player_data?mr_username={username}").json()
+
+    response = requests.get(
+        f"{API_URL_BASE}/api/get_player_data?mr_username={username}"
+    ).json()
 
     # Create the prompt for ChatGPT
     prompt = f"""You are a witty and sharp game stats analyst who roasts players with humor based on their in-game stats in marvel rivals.

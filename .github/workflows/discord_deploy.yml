@@ -21,6 +21,8 @@ jobs:
           ssh ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOSTNAME }} << "EOF"
           cd ./discord_bot
           export DISCORD_TOKEN=${{ secrets.DISCORD_TOKEN }}
+          export OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}
+
           docker compose up --build -d
           docker system prune
           EOF

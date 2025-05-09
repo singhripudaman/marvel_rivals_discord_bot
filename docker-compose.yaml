@@ -1,25 +1,11 @@
 services:
-  # app:
-  #   build:
-  #     context: .
-  #   environment:
-  #     - DISCORD_TOKEN=${DISCORD_TOKEN}
-  #     - OPENAI_API_KEY=${OPENAI_API_KEY}
-  #   ports:
-  #     - "8001:8000"
-  #   volumes:
-  #     - .:/app
-  #   depends_on:
-  #     - selenium
-
-  selenium:
-    image: selenium/standalone-chrome
-    platform: linux/amd64 # for mac m chips
-    volumes:
-      - /dev/shm:/dev/shm # solves low mem in container. but may occur low speed of work
-      - chrome_profiles:/tmp/chrome # to cache profile(sessions, logins...)
+  app:
+    build:
+      context: .
+    environment:
+      - DISCORD_TOKEN=${DISCORD_TOKEN}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
     ports:
-      - 4444:4444
-
-volumes:
-  chrome_profiles:
+      - "8001:8000"
+    volumes:
+      - .:/app
