@@ -2,11 +2,9 @@ import discord
 from discord.ext import commands
 from dotenv import load_dotenv
 import os
-from helpers.parser import parse_api_response
-from helpers.scraper import scrape_data
 from openai import OpenAI
-
-API_URL_BASE = "https://api.tracker.gg"
+import requests
+API_URL_BASE = "http://marvel_api.hamood.dev"
 
 load_dotenv()
 
@@ -17,12 +15,6 @@ bot = commands.Bot(command_prefix="!", intents=intents)
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 
-def get_player_data(username):
-    result_data = scrape_data(
-        f"{API_URL_BASE}/api/v2/marvel-rivals/standard/profile/ign/{ username }/segments/career?mode=all"
-    )
-
-    return parse_api_response(result_data)
 
 
 @bot.event
@@ -44,13 +36,14 @@ async def roast(ctx, *, content):
     username = content
     await ctx.reply("Let me cook...")
     await ctx.message.channel.typing()
-    player_data = get_player_data(username)
+    
+    response = requests.get(f"{API_URL_BASE}/api/get_player_data?mr_username={username}").json()
 
     # Create the prompt for ChatGPT
     prompt = f"""You are a witty and sharp game stats analyst who roasts players with humor based on their in-game stats in marvel rivals.
                 Roast the player "{username}" based on this player data:
 
-                {player_data}
+                {response}
 
                 The roast should be funny, casual, and slightly savage — but not toxic or offensive. Format it like a playful Discord message.
 
