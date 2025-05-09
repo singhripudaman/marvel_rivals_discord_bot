@@ -5,9 +5,9 @@ import os
 from openai import OpenAI
 import requests
 
-API_URL_BASE = "http://marvels_api.hamood.dev"
 
 load_dotenv()
+API_BASE_URL = os.getenv("API_BASE_URL")
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -37,7 +37,7 @@ async def roast(ctx, *, content):
     await ctx.message.channel.typing()
 
     response = requests.get(
-        f"{API_URL_BASE}/api/get_player_data?mr_username={username}"
+        f"{API_BASE_URL}/api/get_player_data?mr_username={username}"
     ).json()
 
     # Create the prompt for ChatGPT

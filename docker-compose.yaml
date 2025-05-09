@@ -5,6 +5,8 @@ services:
     environment:
       - DISCORD_TOKEN=${DISCORD_TOKEN}
       - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - API_BASE_URL=${API_BASE_URL}
+
     ports:
       - "8001:8000"
     volumes:

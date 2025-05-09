@@ -22,6 +22,8 @@ jobs:
           cd ./discord_bot
           export DISCORD_TOKEN=${{ secrets.DISCORD_TOKEN }}
           export OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}
+          export API_BASE_URL=${{ secrets.API_BASE_URL }}
+
 
           docker compose up --build -d
           docker system prune
