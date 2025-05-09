@@ -180,7 +180,7 @@ async def roast(interaction: discord.Interaction, member: discord.Member):
         color=discord.Color.red(),
     )
 
-    await interaction.followup.send(content=interaction.user.mention, embed=embed)
+    await interaction.followup.send(content=member.mention, embed=embed)
 
 
 @tree.command(name="ping", description="Check the bot's latency")
