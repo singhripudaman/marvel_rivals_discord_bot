@@ -9,6 +9,7 @@ This is a Discord bot written in Python using the discord.py library that genera
 - OpenAI API
 - Docker
 - Github Actions CI/CD: Automatically deploy to AWS EC2
+- SQLite
 
 ## Configuration
 
