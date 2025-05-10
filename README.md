@@ -4,7 +4,7 @@ This is a Discord bot written in Python using the discord.py library that genera
 
 ## Technologies Used
 
-- Python 3.12
+- Python
 - discord.py
 - OpenAI API
 - Docker
@@ -24,10 +24,13 @@ Run `docker-compose up --build` to start the bot
 
 ## Commands
 
-- `!roast <marvel_rivals_username>`: Generates a roast for the given player based on their in-game stats.
+- `/roast <member>`: Generates a roast for the given Discord member based on their in-game stats.
+- `/setusername <member> <in_game_username>`: Sets the in-game username for the specified Discord member.
+- `/getusername [member]`: Retrieves the in-game username for the specified Discord member or the invoking user if no member is specified.
+- `/ping`: Checks the bot's latency.
 
 ## Roadmap
 
-- Add more commands for different types of roasts (e.g. roasting a player's favorite hero)
-- Add more features for customizing the roasts (e.g. adding a custom image or font)
-- Add support for other games (e.g. Overwatch, Apex Legends)
+- Add more commands for different types of roasts (e.g., roasting a player's favorite hero)
+- Add more features for customizing the roasts (e.g., adding a custom image or font)
+- Add support for other games (e.g., Overwatch, Apex Legends)
