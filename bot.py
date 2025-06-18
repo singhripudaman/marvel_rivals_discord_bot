@@ -147,11 +147,15 @@ async def roast(interaction: discord.Interaction, member: discord.Member):
         f"{API_BASE_URL}/api/get_player_data?mr_username={username}"
     ).json()
 
+    filtered_response = sorted(
+        response.items(), key=lambda k: k[1]["playtime_raw"], reverse=True
+    )[:10]
+
     # Create the prompt for ChatGPT
     prompt = f"""You are a witty and sharp game stats analyst who roasts players with humor based on their in-game stats in marvel rivals.
                 Roast the player \"{username}\" based on this player data:
 
-                {response}
+                {filtered_response}
 
                 The roast should be funny, casual, and slightly savage — but not toxic or offensive. Format it like a playful Discord message.
 
