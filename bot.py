@@ -164,7 +164,7 @@ async def roast(interaction: discord.Interaction, member: discord.Member):
 
     # Call OpenAI (gpt-4 or gpt-3.5-turbo works fine)
     response = client.chat.completions.create(
-        model="gpt-4",
+        model="gpt-4o",
         messages=[
             {
                 "role": "system",
